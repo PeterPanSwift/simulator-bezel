@@ -4,6 +4,10 @@ iPhone 模擬器的截圖存到桌面後,**自動**套上實機外框(bezel),產
 
 存下 `Screenshot iPhone 17 Pro ... .png` 幾秒後,旁邊就會自動出現加好外框的 `Screenshot iPhone 17 Pro ... Bezel.png`,完全不用動手。
 
+| 模擬器截圖 | 自動加框後 |
+|:---:|:---:|
+| <img src="docs/demo-before.png" width="285"> | <img src="docs/demo-after.png" width="300"> |
+
 ## 需求
 
 - macOS(使用內建的 launchd,不需安裝任何第三方工具)
