@@ -120,10 +120,12 @@ func scan(bezelPath: String, dir: String) {
         logScan("scan FAILED: cannot read \(dir) (檢查「桌面」資料夾存取權)")
         fail("cannot read directory: \(dir) — grant this binary access to the folder")
     }
+    // 模擬器截圖「Screenshot iPhone 17 Pro …」與實機截圖「Screenshot 某人的 iPhone …」
+    // 裝置名稱的位置不同,所以只要求開頭是 Screenshot、名稱含 iPhone。
     let shots = names.filter { name in
         name.hasSuffix(".png") && !name.hasSuffix(" Bezel.png")
-            && (name.hasPrefix("Screenshot iPhone")
-                || (name.hasPrefix("Simulator Screenshot") && name.contains("iPhone")))
+            && (name.hasPrefix("Screenshot ") || name.hasPrefix("Simulator Screenshot "))
+            && name.contains("iPhone")
     }
     var made = 0
     for name in shots.sorted() {

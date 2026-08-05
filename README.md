@@ -1,8 +1,8 @@
 # Simulator Bezel
 
-Automatically frame your iPhone Simulator screenshots with a device bezel, the moment they land on your Desktop.
+Automatically frame your iPhone screenshots — from the Simulator or a real device — with a device bezel, the moment they land on your Desktop.
 
-iPhone 模擬器截圖存到桌面後,自動套上實機外框(bezel)。
+iPhone 截圖(模擬器或實機)存到桌面後,自動套上實機外框(bezel)。
 
 | Simulator screenshot 模擬器截圖 | Auto-framed 自動加框後 |
 |:---:|:---:|
@@ -14,7 +14,7 @@ iPhone 模擬器截圖存到桌面後,自動套上實機外框(bezel)。
 
 ## English
 
-Save a screenshot in the iPhone Simulator (`Cmd+S`) and a framed `... Bezel.png` appears next to it on your Desktop within seconds — no clicks, no drag-and-drop, fully automatic.
+Save a screenshot in the iPhone Simulator (`Cmd+S`), or take one on a real iPhone through iPhone Mirroring, and a framed `... Bezel.png` appears next to it on your Desktop within seconds — no clicks, no drag-and-drop, fully automatic.
 
 ### Requirements
 
@@ -36,7 +36,7 @@ Then press <kbd>Cmd</kbd>+<kbd>S</kbd> in the Simulator to save a screenshot to 
 - `install.sh` compiles `bezel-frame`, deploys it together with `bezel.png` to `~/Library/Application Support/add-bezel/`, and registers a launchd LaunchAgent (`~/Library/LaunchAgents/com.add-bezel.plist`).
 - The LaunchAgent uses **WatchPaths** to watch `~/Desktop`: whenever the folder changes, the system launches `bezel-frame --scan` once. Idle cost is zero (kernel event notification, not polling), and a scan that finds nothing to do finishes in about 16 ms.
 - `bezel-frame` auto-detects the transparent screen cutout in `bezel.png` (flood-filling transparent pixels from the center), draws the screenshot underneath and the bezel on top — so **swapping in a different bezel image requires no code changes**.
-- Only files matching `Screenshot iPhone*.png` or `Simulator Screenshot*iPhone*.png` are processed; files that already have a `... Bezel.png` counterpart are skipped (idempotent — rescanning never redoes work).
+- A file is processed when its name starts with `Screenshot` (or `Simulator Screenshot`) and contains `iPhone` — this covers both Simulator names like `Screenshot iPhone 17 Pro 08-05-2026 at 16.42.20.png` and real-device names like `Screenshot Peter's iPhone 08-06-2026 at 00.26.35.png`. Files that already have a `... Bezel.png` counterpart are skipped (idempotent — rescanning never redoes work).
 
 ### Custom bezel
 
@@ -74,7 +74,7 @@ Framed images on your Desktop are left untouched.
 
 ## 繁體中文
 
-iPhone 模擬器的截圖存到桌面後,**自動**套上實機外框(bezel),產生適合分享、放簡報的圖片。
+iPhone 的截圖存到桌面後,**自動**套上實機外框(bezel),產生適合分享、放簡報的圖片。模擬器截圖與透過「iPhone 鏡像輸出」拍的實機截圖都支援。
 
 存下 `Screenshot iPhone 17 Pro ... .png` 幾秒後,旁邊就會自動出現加好外框的 `Screenshot iPhone 17 Pro ... Bezel.png`,完全不用動手。
 
@@ -98,7 +98,7 @@ cd simulator-bezel
 - `install.sh` 會把編譯好的 `bezel-frame` 和 `bezel.png` 部署到 `~/Library/Application Support/add-bezel/`,並註冊一個 launchd LaunchAgent(`~/Library/LaunchAgents/com.add-bezel.plist`)。
 - LaunchAgent 用 **WatchPaths** 監看 `~/Desktop`:桌面一有變動,系統就喚起 `bezel-frame --scan` 掃描一次。平常完全不耗資源(核心事件通知,不是輪詢),沒有新截圖時一次掃描約 16 毫秒就結束。
 - `bezel-frame` 會自動偵測 `bezel.png` 透明螢幕開口的位置(從中心 flood-fill 透明像素),把截圖墊在下層、外框疊在上層合成,所以**換不同外框圖不需要改任何程式**。
-- 檔名符合 `Screenshot iPhone*.png` 或 `Simulator Screenshot*iPhone*.png` 的檔案才會處理;已經有對應 `... Bezel.png` 的會跳過(冪等,重複掃描不會重做)。
+- 檔名開頭是 `Screenshot`(或 `Simulator Screenshot`)且含有 `iPhone` 的檔案才會處理 — 同時涵蓋模擬器的 `Screenshot iPhone 17 Pro 08-05-2026 at 16.42.20.png` 與實機的 `Screenshot 彼得潘 的 iPhone 08-06-2026 at 00.26.35.png`。已經有對應 `... Bezel.png` 的會跳過(冪等,重複掃描不會重做)。
 
 ### 自訂外框
 
