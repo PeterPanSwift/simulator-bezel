@@ -77,6 +77,10 @@ echo "==> 安裝快速動作(~/Library/Services/Add Bezel.workflow)"
 mkdir -p "$HOME/Library/Services"
 rm -rf "$HOME/Library/Services/Add Bezel.workflow"
 cp -R "$HERE/Add Bezel.workflow" "$HOME/Library/Services/"
+# 手動複製的 workflow 預設不會被啟用,直接寫入 pbs 偏好設定啟用它
+ENABLE='{ "enabled_context_menu" = 1; "enabled_services_menu" = 1; "presentation_modes" = { ContextMenu = 1; ServicesMenu = 1; }; }'
+defaults write pbs NSServicesStatus -dict-add '"com.apple.Automator.Add Bezel - Add Bezel - runWorkflowAsService"' "$ENABLE"
+defaults write pbs NSServicesStatus -dict-add '"(null) - Add Bezel - runWorkflowAsService"' "$ENABLE"
 /System/Library/CoreServices/pbs -update 2>/dev/null || true
 
 echo ""
