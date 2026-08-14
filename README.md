@@ -46,7 +46,12 @@ The bundled `bezel.png` is an iPhone 17 Pro (Cosmic Orange) with a 1206×2622 sc
 
 ### Right-click menu
 
-`install.sh` also builds `~/Applications/Add Bezel.app` (an AppleScript droplet compiled with `osacompile`). To frame any image — regardless of its filename — right-click it in Finder and choose **Open With → Add Bezel**, or drop images onto the app icon. The framed copy is saved next to the original as `... Bezel.png`. If the app doesn't show up in the Open With menu right away, relaunch Finder or log out and back in.
+`install.sh` gives you two Finder right-click entry points, both of which frame any image regardless of its filename and save the result next to the original as `... Bezel.png`:
+
+- **Quick Action** — right-click an image → **Quick Actions → Add Bezel**. Installed as an Automator workflow at `~/Library/Services/Add Bezel.workflow`; also selectable from the Finder preview pane and the Touch Bar.
+- **Open With** — right-click an image → **Open With → Add Bezel**, or drop images onto `~/Applications/Add Bezel.app` (an AppleScript droplet compiled with `osacompile`).
+
+If a menu item doesn't show up right away, relaunch Finder or log out and back in.
 
 ### Manual run
 
@@ -112,7 +117,12 @@ cd simulator-bezel
 
 ### 右鍵選單
 
-`install.sh` 也會用 `osacompile` 建置 `~/Applications/Add Bezel.app`。想幫**任何圖片**加框(不限檔名格式),在 Finder 對圖片按右鍵 →「**打開檔案的應用程式**」→「**Add Bezel**」,或直接把圖片拖到 App 圖示上。加框後的 `... Bezel.png` 會存在原圖旁邊。如果右鍵選單沒出現這個 App,重新啟動 Finder 或登出再登入即可。
+`install.sh` 提供兩種 Finder 右鍵入口,都能幫**任何圖片**加框(不限檔名格式),加框後的 `... Bezel.png` 存在原圖旁邊:
+
+- **快速動作** — 對圖片按右鍵 →「**快速動作**」→「**Add Bezel**」。以 Automator workflow 形式安裝在 `~/Library/Services/Add Bezel.workflow`,Finder 預覽面板也能點。
+- **打開檔案的應用程式** — 對圖片按右鍵 →「**打開檔案的應用程式**」→「**Add Bezel**」,或把圖片拖到 `~/Applications/Add Bezel.app` 圖示上(用 `osacompile` 編譯的 AppleScript droplet)。
+
+如果選單一開始沒出現,重新啟動 Finder 或登出再登入即可。
 
 ### 手動執行
 

@@ -73,9 +73,16 @@ $PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes:0 string public.image" "
 $PB -c "Set :CFBundleIdentifier com.add-bezel.app" "$INFO" 2>/dev/null || $PB -c "Add :CFBundleIdentifier string com.add-bezel.app" "$INFO"
 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -f "$APP"
 
+echo "==> 安裝快速動作(~/Library/Services/Add Bezel.workflow)"
+mkdir -p "$HOME/Library/Services"
+rm -rf "$HOME/Library/Services/Add Bezel.workflow"
+cp -R "$HERE/Add Bezel.workflow" "$HOME/Library/Services/"
+/System/Library/CoreServices/pbs -update 2>/dev/null || true
+
 echo ""
 echo "✅ 安裝完成!"
 echo "   • 桌面出現新的 iPhone 截圖時,會自動產生「... Bezel.png」。"
-echo "   • 任何圖片也可以按右鍵 → 打開檔案的應用程式 → Add Bezel 手動加框。"
+echo "   • 任何圖片也可以按右鍵 → 快速動作 → Add Bezel,"
+echo "     或右鍵 → 打開檔案的應用程式 → Add Bezel 手動加框。"
 echo "   若 macOS 詢問是否允許取用「桌面」,請按允許。"
 echo "   執行記錄:~/Library/Caches/add-bezel.log"
