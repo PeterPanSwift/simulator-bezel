@@ -44,6 +44,10 @@ Replace `bezel.png` with any frame image whose **screen area is transparent**, t
 
 The bundled `bezel.png` is an iPhone 17 Pro (Cosmic Orange) with a 1206×2622 screen cutout — a 1:1 match for Simulator screenshot resolution.
 
+### Right-click menu
+
+`install.sh` also builds `~/Applications/Add Bezel.app` (an AppleScript droplet compiled with `osacompile`). To frame any image — regardless of its filename — right-click it in Finder and choose **Open With → Add Bezel**, or drop images onto the app icon. The framed copy is saved next to the original as `... Bezel.png`. If the app doesn't show up in the Open With menu right away, relaunch Finder or log out and back in.
+
 ### Manual run
 
 ```bash
@@ -105,6 +109,10 @@ cd simulator-bezel
 把 `bezel.png` 換成任何**螢幕區域為透明**的外框圖,重新執行 `./install.sh` 即可。開口位置與大小都是執行時自動偵測的。
 
 附的 `bezel.png` 是 iPhone 17 Pro(宇宙橙),螢幕開口 1206×2622,和模擬器截圖解析度 1:1 對應。
+
+### 右鍵選單
+
+`install.sh` 也會用 `osacompile` 建置 `~/Applications/Add Bezel.app`。想幫**任何圖片**加框(不限檔名格式),在 Finder 對圖片按右鍵 →「**打開檔案的應用程式**」→「**Add Bezel**」,或直接把圖片拖到 App 圖示上。加框後的 `... Bezel.png` 會存在原圖旁邊。如果右鍵選單沒出現這個 App,重新啟動 Finder 或登出再登入即可。
 
 ### 手動執行
 

@@ -54,7 +54,28 @@ EOF
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST"
 
+echo "==> 建立右鍵選單 App(~/Applications/Add Bezel.app)"
+APP="$HOME/Applications/Add Bezel.app"
+mkdir -p "$HOME/Applications"
+rm -rf "$APP"
+osacompile -o "$APP" "$HERE/Add Bezel.applescript"
+# 宣告可開啟圖片檔,右鍵「打開檔案的應用程式」才會列出這個 App
+PB=/usr/libexec/PlistBuddy
+INFO="$APP/Contents/Info.plist"
+$PB -c "Delete :CFBundleDocumentTypes" "$INFO" 2>/dev/null || true
+$PB -c "Add :CFBundleDocumentTypes array" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0 dict" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0:CFBundleTypeName string Image" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0:CFBundleTypeRole string Viewer" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0:LSHandlerRank string Alternate" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes array" "$INFO"
+$PB -c "Add :CFBundleDocumentTypes:0:LSItemContentTypes:0 string public.image" "$INFO"
+$PB -c "Set :CFBundleIdentifier com.add-bezel.app" "$INFO" 2>/dev/null || $PB -c "Add :CFBundleIdentifier string com.add-bezel.app" "$INFO"
+/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -f "$APP"
+
 echo ""
-echo "✅ 安裝完成!桌面出現新的 iPhone 模擬器截圖時,會自動產生「... Bezel.png」。"
+echo "✅ 安裝完成!"
+echo "   • 桌面出現新的 iPhone 截圖時,會自動產生「... Bezel.png」。"
+echo "   • 任何圖片也可以按右鍵 → 打開檔案的應用程式 → Add Bezel 手動加框。"
 echo "   若 macOS 詢問是否允許取用「桌面」,請按允許。"
 echo "   執行記錄:~/Library/Caches/add-bezel.log"
