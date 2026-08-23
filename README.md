@@ -63,6 +63,7 @@ If a menu item doesn't show up right away, relaunch Finder or log out and back i
 Or frame a single file:
 
 ```bash
+./bezel-frame screenshot.png            # bezel.png taken from the binary's folder, writes "screenshot Bezel.png"
 ./bezel-frame bezel.png screenshot.png output.png
 ```
 

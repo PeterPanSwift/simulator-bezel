@@ -142,6 +142,15 @@ if args.count == 4 && args[1] == "--scan" {
     scan(bezelPath: args[2], dir: args[3])
 } else if args.count == 4 {
     frame(bezelPath: args[1], shotPath: args[2], outPath: args[3])
+} else if args.count == 2 && args[1] != "--help" && args[1] != "-h" {
+    // 只傳截圖:bezel 用執行檔旁邊的 bezel.png,輸出為「<原名> Bezel.png」
+    let exe = URL(fileURLWithPath: args[0]).resolvingSymlinksInPath()
+    let bezel = exe.deletingLastPathComponent().appendingPathComponent("bezel.png").path
+    let shot = URL(fileURLWithPath: args[1])
+    let base = shot.deletingPathExtension().lastPathComponent
+    let out = shot.deletingLastPathComponent().appendingPathComponent(base + " Bezel.png").path
+    frame(bezelPath: bezel, shotPath: shot.path, outPath: out)
+    print(out)
 } else {
-    fail("usage: bezel-frame <bezel.png> <screenshot.png> <output.png>\n       bezel-frame --scan <bezel.png> <dir>")
+    fail("usage: bezel-frame <screenshot.png>                  (bezel.png 取自執行檔同目錄,輸出「<原名> Bezel.png」)\n       bezel-frame <bezel.png> <screenshot.png> <output.png>\n       bezel-frame --scan <bezel.png> <dir>")
 }
