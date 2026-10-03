@@ -60,9 +60,8 @@
 				<dict>
 					<key>COMMAND_STRING</key>
 					<string>TOOL="$HOME/Library/Application Support/add-bezel/bezel-frame"
-BEZEL="$HOME/Library/Application Support/add-bezel/bezel.png"
 for f in "$@"; do
-  "$TOOL" "$BEZEL" "$f" "${f%.*} Bezel.png"
+  "$TOOL" "$f"
 done</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>

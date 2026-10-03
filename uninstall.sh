@@ -3,7 +3,8 @@
 launchctl bootout "gui/$(id -u)/com.add-bezel" 2>/dev/null || true
 rm -f "$HOME/Library/LaunchAgents/com.add-bezel.plist"
 rm -rf "$HOME/Library/Application Support/add-bezel"
-rm -f "$HOME/Library/Caches/add-bezel.log" "$HOME/Library/Caches/add-bezel-launchd.log"
+rm -f "$HOME/Library/Caches/add-bezel.log" "$HOME/Library/Caches/add-bezel-launchd.log" "$HOME/Library/Caches/add-bezel-skipped.txt"
+defaults delete com.add-bezel 2>/dev/null || true
 rm -rf "$HOME/Library/Services/Add Bezel.workflow"
 /System/Library/CoreServices/pbs -update 2>/dev/null || true
 if [ -d "$HOME/Applications/Add Bezel.app" ]; then
